@@ -25,7 +25,9 @@
 typedef NS_ENUM(NSUInteger, AFHTTPRequestLoggerLevel) {
   AFLoggerLevelOff,
   AFLoggerLevelDebug,
+  AFLoggerLevelDebugCURL,
   AFLoggerLevelInfo,
+  AFLoggerLevelCURL,
   AFLoggerLevelWarn,
   AFLoggerLevelError,
   AFLoggerLevelFatal = AFLoggerLevelOff,
@@ -95,8 +97,14 @@ typedef NS_ENUM(NSUInteger, AFHTTPRequestLoggerLevel) {
  `AFLoggerLevelDebug`
  Logs HTTP method, URL, header fields, & request body for requests, and status code, URL, header fields, response string, & elapsed time for responses.
  
+ `AFLoggerLevelDebugCURL`
+ Logs requests to cURL command and status code, URL, header fields, response string, & elapsed time for responses.
+ 
  `AFLoggerLevelInfo`
  Logs HTTP method & URL for requests, and status code, URL, & elapsed time for responses.
+
+ `AFLoggerLevelCURL`
+ Logs requests to cURL command
 
  `AFLoggerLevelWarn`
  Logs HTTP method & URL for requests, and status code, URL, & elapsed time for responses, but only for failed requests.

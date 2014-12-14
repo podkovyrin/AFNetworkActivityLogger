@@ -23,6 +23,7 @@
 #import "AFNetworkActivityLogger.h"
 #import "AFURLConnectionOperation.h"
 #import "AFURLSessionManager.h"
+#import <FormatterKit/TTTURLRequestFormatter.h>
 
 #import <objc/runtime.h>
 
@@ -125,6 +126,10 @@ static void * AFNetworkRequestStartDate = &AFNetworkRequestStartDate;
         case AFLoggerLevelDebug:
             NSLog(@"%@ '%@': %@ %@", [request HTTPMethod], [[request URL] absoluteString], [request allHTTPHeaderFields], body);
             break;
+        case AFLoggerLevelDebugCURL:
+        case AFLoggerLevelCURL:
+            NSLog(@"\n--------\n%@\n--------", [TTTURLRequestFormatter cURLCommandFromURLRequest:request]);
+            break;
         case AFLoggerLevelInfo:
             NSLog(@"%@ '%@'", [request HTTPMethod], [[request URL] absoluteString]);
             break;
@@ -165,6 +170,7 @@ static void * AFNetworkRequestStartDate = &AFNetworkRequestStartDate;
     if (error) {
         switch (self.level) {
             case AFLoggerLevelDebug:
+            case AFLoggerLevelDebugCURL:
             case AFLoggerLevelInfo:
             case AFLoggerLevelWarn:
             case AFLoggerLevelError:
@@ -175,6 +181,7 @@ static void * AFNetworkRequestStartDate = &AFNetworkRequestStartDate;
     } else {
         switch (self.level) {
             case AFLoggerLevelDebug:
+            case AFLoggerLevelDebugCURL:
                 NSLog(@"%ld '%@' [%.04f s]: %@ %@", (long)responseStatusCode, [[response URL] absoluteString], elapsedTime, responseHeaderFields, responseObject);
                 break;
             case AFLoggerLevelInfo:

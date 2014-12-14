@@ -13,4 +13,5 @@ Pod::Spec.new do |s|
 
   s.dependency 'AFNetworking/NSURLSession', '~> 2.0'
   s.dependency 'AFNetworking/NSURLConnection', '~> 2.0'
+  s.dependency 'FormatterKit/URLRequestFormatter'
 end
